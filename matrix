@@ -8,7 +8,12 @@ exit_script(){
     2>/dev/null exit 0
 }
 
-TEXT="$1"
+if [[ -n "$1" ]]; then
+    TEXT="$1"
+else
+    TEXT="hello world!"
+fi
+
 # Determine terminal width
 TERM_WIDTH=$(tput cols)
 REPS=$((TERM_WIDTH / ${#TEXT}))
