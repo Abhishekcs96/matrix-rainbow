@@ -8,9 +8,8 @@ exit_script(){
     2>/dev/null exit 0
 }
 
-if [[ -n "$1" ]]; then
-    TEXT="$1"
-else
+TEXT="$1"
+if [[ -z "$1" ]]; then
     TEXT="hello world!"
 fi
 
