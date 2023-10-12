@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Matrix like display
+
+trap 'exit_script' INT
+
+exit_script(){
+    2>/dev/null exit 0
+}
+
+TEXT="$1"
+# Determine terminal width
+TERM_WIDTH=$(tput cols)
+REPS=$((TERM_WIDTH / ${#TEXT}))
+REPS_TEXT=""
+
+for ((i=0;i<REPS;i++)); do 
+    REPS_TEXT="${REPS_TEXT}\t${TEXT}"
+done
+
+while :; do    
+    2>/dev/null echo -e "$REPS_TEXT" | lolcat 
+done
