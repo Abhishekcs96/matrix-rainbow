@@ -2,11 +2,12 @@
 
 # Matrix like display
 
-trap 'exit_script' INT
-
 exit_script(){
     2>/dev/null exit 0
 }
+
+hash lolcat 2>/dev/null || (>&2 echo "Command \"lolcat\" not found...please install it" && exit 1)
+trap 'exit_script' INT
 
 TEXT="$1"
 if [[ -z "$1" ]]; then
@@ -18,7 +19,7 @@ TERM_WIDTH=$(tput cols)
 REPS=$((TERM_WIDTH / ${#TEXT}))
 REPS_TEXT=""
 
-for ((i=0;i<REPS;i++)); do 
+for (( i=0; i<REPS; i++ )); do 
     REPS_TEXT="${REPS_TEXT}\t${TEXT}"
 done
 
