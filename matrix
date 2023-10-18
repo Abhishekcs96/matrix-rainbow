@@ -24,5 +24,5 @@ for (( i=0; i<REPS; i++ )); do
 done
 
 while :; do    
-    2>/dev/null echo -e "$REPS_TEXT" | lolcat 
+    2>/dev/null echo -e "$REPS_TEXT" | sed 's/./&\n/g' | lolcat
 done
