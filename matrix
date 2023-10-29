@@ -2,12 +2,13 @@
 
 # Matrix like display
 
-exit_script(){
+function cleanup(){
     2>/dev/null exit 0
 }
 
-hash lolcat 2>/dev/null || (>&2 echo "Command \"lolcat\" not found...please install it" && exit 1)
-trap 'exit_script' INT
+function binary_check(){
+    hash lolcat 2>/dev/null || (>&2 echo "Command \"lolcat\" not found...please install it" && exit 1)
+}
 
 TEXT="$1"
 if [[ -z "$1" ]]; then
@@ -26,3 +27,5 @@ done
 while :; do    
     2>/dev/null echo -e "$REPS_TEXT" | sed 's/./&\n/g' | lolcat
 done
+
+trap 'cleanup' INT
